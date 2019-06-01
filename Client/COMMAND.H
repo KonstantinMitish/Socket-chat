@@ -1,0 +1,28 @@
+#ifndef __COMMAND_H_
+#define __COMMAND_H_
+
+typedef enum
+{
+  CMDTYPE_UNKNOWN, 
+  CMDTYPE_CONNECT, 
+  CMDTYPE_REBOOT, 
+  CMDTYPE_UPLOAD,
+  CMDTYPE_DOWNLOAD, 
+  CMDTYPE_DISCONNECT,
+  CMDTYPE_CALLCMD, 
+  CMDTYPE_INIT_DH,
+  CMDTYPE_CHANGE_NAME,
+  CMDTYPE_SET_DEBUG,
+  CMDTYPE_CLEAR,
+  CMDTYPE_RAND,
+} CMDTYPE;
+
+typedef struct tagCMD
+{
+  CMDTYPE Type;
+  CHAR Args[30][128];
+} CMD;
+
+size_t ParseCmd(CHAR *String, CMD *Cmd);
+size_t RunCmd(CMD *Cmd);
+#endif /* __COMMAND_H_ */
